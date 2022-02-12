@@ -14,14 +14,16 @@ const geEthereumContract = () => {
     console.log({
         provider: provider,
         signer: signer,
+        transactionContract
     });
 }
 
 export const TransactionProvider = ({ children }) => {
 
     const [currentAccount, setCurrentAccount] = useState('');
+    const [formData] = useState({ originator: '', source: '', keyword: '', message: '' });
 
-
+    // Checks is the metamask wallet is connected
     const checkIfWalletConnected = async () => {
         try {
             if (!ethereum) return alert('Please install MetaMask');
@@ -42,6 +44,7 @@ export const TransactionProvider = ({ children }) => {
         }
     }
 
+    // Connects the metamask wallet
     const connectWallet = async () => {
         try {
             if (!ethereum) return alert('Please install MetaMask');
@@ -51,6 +54,19 @@ export const TransactionProvider = ({ children }) => {
 
         } catch (e) {
             console.error(e);
+            throw new Error('No ethereum object.');
+        }
+    }
+
+    const sendTransaction = async () => {
+        try {
+            if (!ethereum) return alert('Please install MetaMask');
+
+            // get the data from the form....
+
+
+        } catch (error) {
+            console.error(error);
             throw new Error('No ethereum object.');
         }
     }
