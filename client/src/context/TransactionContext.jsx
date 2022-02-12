@@ -10,18 +10,19 @@ const geEthereumContract = () => {
     const provider = new ethers.providers.Web3Provider(ethereum);
     const signer = provider.getSigner();
     const transactionContract = new ethers.Contract(contractAddress, ContractABI, signer);
-
-    console.log({
-        provider: provider,
-        signer: signer,
-        transactionContract
-    });
+    return transactionContract;
 }
 
 export const TransactionProvider = ({ children }) => {
 
     const [currentAccount, setCurrentAccount] = useState('');
-    const [formData] = useState({ originator: '', source: '', keyword: '', message: '' });
+    const [formData, setFormData] = useState({ link: '', originator: '', source: '', keyword: '', message: '' });
+    const [isLoading, setIsLoading] = useState(false);
+    const [transactionCount, setTransactionCount] = useState(localStorage.getItem('transactionCount'));
+
+    const handleChange = (e, name) => {
+        setFormData((prevState) => ({ ...prevState, [name]: e.target.value }));
+    }
 
     // Checks is the metamask wallet is connected
     const checkIfWalletConnected = async () => {
@@ -58,13 +59,29 @@ export const TransactionProvider = ({ children }) => {
         }
     }
 
+
+    // Sends the transaction to the blockchain
     const sendTransaction = async () => {
         try {
             if (!ethereum) return alert('Please install MetaMask');
 
             // get the data from the form....
+            const { link, originator, source, keyword, message } = formData;
+            const transactionContract = geEthereumContract();
 
+            // await ethereum.request({ method: 'eth_' });
+            const transactionHash = await transactionContract.addToBlockchain(link, originator, source, message, keyword);
 
+            setIsLoading(true);
+            console.log(`Loading - ${transactionHash.hash}`);
+            await transactionHash.wait();
+
+            setIsLoading(false);
+            console.log(`Success - ${transactionHash.hash}`);
+
+            const transactionCount = await transactionContract.getTransactionCount();
+            setTransactionCount(transactionCount.toNumber());
+            
         } catch (error) {
             console.error(error);
             throw new Error('No ethereum object.');
@@ -77,7 +94,7 @@ export const TransactionProvider = ({ children }) => {
 
 
     return (
-        <TransactionContext.Provider value={{ connectWallet, currentAccount }}>
+        <TransactionContext.Provider value={{ connectWallet, currentAccount, formData, setFormData, sendTransaction, handleChange }}>
             {children}
         </TransactionContext.Provider>
     );
