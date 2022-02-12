@@ -1,10 +1,11 @@
+import React, { useContext } from 'react';
 import { BsShieldFillCheck } from "react-icons/bs";
 import { BiSearchAlt } from "react-icons/bi";
 import { RiHeart2Fill } from "react-icons/ri";
-
+import { TransactionContext } from "../context/TransactionContext";
 const ServiceCard = ({ color, title, icon, subtitle }) => {
     return (
-        <div className="flex flex-row justify-start items-center white-glassmorphism p-3 m-2 cursor-pointer hover:shadow-xl">
+        <div className="min-w-[70%] flex flex-row justify-start items-center white-glassmorphism p-3 m-2 cursor-pointer hover:shadow-xl">
             <div className={`w-10 h-10 rounded-full flex justify-center items-center ${color}`}>
                 {icon}
             </div>
@@ -17,6 +18,8 @@ const ServiceCard = ({ color, title, icon, subtitle }) => {
 }
 
 const Services = () => {
+
+    const { transactionCount } = useContext(TransactionContext);
     return (
         <div className="flex flex-col lg:flex-row w-full justify-center items-center gradient-bg-services">
             <div className="flex mf:flex-row flex-col items-center justify-between md:p-20 py-12 px-4">
@@ -36,15 +39,15 @@ const Services = () => {
                 />
                 <ServiceCard
                     color="bg-[#8945f8]"
-                    title=""
+                    title="Fast Transactions"
                     icon={<BiSearchAlt fontSize={21} className="text-white" />}
                     subtitle="Security is Guaranteed. We ensure privacy and maintain the integrity of your links"
                 />
                 <ServiceCard
                     color="bg-[#f84550]"
-                    title="Security Guaranteed"
+                    title="No. of Secure Links Registered"
                     icon={<RiHeart2Fill fontSize={21} className="text-white" />}
-                    subtitle="Security is Guaranteed. We ensure privacy and maintain the integrity of your links"
+                    subtitle={`${transactionCount} successful links secured. `}
                 />
             </div>
         </div>

@@ -8,7 +8,7 @@ import Loader from "./Loader";
 
 const commonStyles = 'min-h-[70px] sm:px-0 px-2 sm:min-w-[120px] flex justify-center items-center border-[0.5px] border-gray-300 text-sm font-light text-white';
 
-const Input = ({ placeholder, name, type, value, handleChange, validate }) => {
+const Input = ({ placeholder, name, type, value, handleChange, validate, disabled }) => {
     return (
         <input
             className="w-full my-2 rounded-md p-2 outline-none bg-transparent text-white border-none text-sm white-glassmorphism"
@@ -16,6 +16,7 @@ const Input = ({ placeholder, name, type, value, handleChange, validate }) => {
             placeholder={placeholder}
             step="0.0001"
             value={value}
+            disabled={disabled}
             onChange={(e) => handleChange(e, name)}
             required={validate}
         />
@@ -25,7 +26,7 @@ const Input = ({ placeholder, name, type, value, handleChange, validate }) => {
 
 const Welcome = () => {
 
-    const { connectWallet, currentAccount, formData, setFormData, sendTransaction, handleChange } = useContext(TransactionContext);
+    const { connectWallet, currentAccount, formData, isLoading, sendTransaction, handleChange } = useContext(TransactionContext);
 
     const handleSubmit = (e) => {
         console.log("adhgb");
@@ -101,7 +102,7 @@ const Welcome = () => {
 
                     <div className="p-5 sm:w-96 w-full flex flex-col justify-start items-center blue-glassmorphism">
                         <Input placeholder="Link" type="text" name="link" handleChange={handleChange} validate={true} />
-                        <Input placeholder="Originator" type="text" name="originator" value={currentAccount} handleChange={handleChange} validate={true} />
+                        <Input placeholder="Originator" type="text" name="originator" value={currentAccount} disabled={true} handleChange={handleChange} validate={true} />
                         <Input placeholder="Source website" type="text" name="source" handleChange={handleChange} validate={false} />
                         <Input placeholder="Keyword (Gif)" type="text" name="keyword" handleChange={handleChange} validate={true} />
                         <Input placeholder="Description/Message" type="text" name="message" handleChange={handleChange} validate={false} />
@@ -109,7 +110,7 @@ const Welcome = () => {
                         {/* Separator */}
                         <div className="h-[1px] w-full bg-gray bg-gray-400 my2" />
 
-                        {false ? (
+                        {isLoading ? (
                             <Loader />
                         ) : (
                             <button
