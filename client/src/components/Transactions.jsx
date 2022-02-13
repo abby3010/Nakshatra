@@ -24,26 +24,26 @@ const TransactionCard = ({ link,
         min-w-full
         flex-col rounded-md hover:shadow-2xl
         ">
-            <div className="flex flex-col items-center w-full mt-3">
+            <div className="flex flex-col items-center w-full mt-3 break-all">
                 <div className="w-full mb-6 p-4">
                     <a href={`/link/${slug}`} target="_blank" rel="noopener noreferrer">
-                        <p className="text-white text-base">
+                        <p className="text-white text-base break-all">
                             Link:
                             <span className="text-blue-500">{" " + link}</span>
                         </p>
                     </a>
-                    <p className="text-white text-base">
+                    <p className="text-white text-base break-all">
                         Originator:
                         <span className="text-blue-500">{" " + originator.slice(0, 5)}...{originator.slice(-5)}</span>
                     </p>
-                    <p className="text-white text-base">
+                    <p className="text-white text-base break-all">
                         Source:
                         <span className="text-blue-500">{" " + source}</span>
                     </p>
                     {message && (
                         <>
                             <br />
-                            <p className="text-white text-base">
+                            <p className="text-white text-base break-all">
                                 Message:
                                 <span className="text-purple-500">{" " + message}</span>
                             </p>

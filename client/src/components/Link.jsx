@@ -25,7 +25,7 @@ const Link = () => {
                 </div>}
                 <div className="flex flex-col ml-5">
                     <h1 className="mt-2 text-white text-lg ">{title}</h1>
-                    <h1 className="mt-2 text-white text-sm  break-all">{subtitle}</h1>
+                    <h1 className="mt-2 text-white text-sm break-all">{subtitle}</h1>
                 </div>
             </div>
         );
