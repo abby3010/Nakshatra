@@ -39,9 +39,8 @@ export const TransactionProvider = ({ children }) => {
                 message: transaction.message,
                 keyword: transaction.keyword,
                 source: transaction.source,
+                slug: transaction.slug,
             }));
-
-            console.log(structuredTransactions)
 
             setTransactions(structuredTransactions);
         } catch (error) {
@@ -58,7 +57,7 @@ export const TransactionProvider = ({ children }) => {
             if (accounts.length) {
                 setCurrentAccount(accounts[0]);
 
-                getAllTransactions();
+                await getAllTransactions();
 
             } else {
                 console.log("No account found.");
@@ -139,7 +138,7 @@ export const TransactionProvider = ({ children }) => {
 
 
     return (
-        <TransactionContext.Provider value={{ transactionCount, connectWallet, currentAccount, formData, setFormData, sendTransaction, handleChange, transactions, isLoading }}>
+        <TransactionContext.Provider value={{ checkIfWalletConnected, checkIfTransactionsExists, transactionCount, connectWallet, currentAccount, formData, setFormData, sendTransaction, handleChange, transactions, isLoading, getAllTransactions }}>
             {children}
         </TransactionContext.Provider>
     );

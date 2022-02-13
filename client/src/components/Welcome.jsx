@@ -8,14 +8,14 @@ import Loader from "./Loader";
 
 const commonStyles = 'min-h-[70px] sm:px-0 px-2 sm:min-w-[120px] flex justify-center items-center border-[0.5px] border-gray-300 text-sm font-light text-white';
 
-const Input = ({ placeholder, name, type, value, handleChange, validate, disabled }) => {
+const Input = ({ placeholder, name, type, value, handleChange, defaultValue, validate, disabled }) => {
     return (
         <input
             className="w-full my-2 rounded-md p-2 outline-none bg-transparent text-white border-none text-sm white-glassmorphism"
             type={type}
             placeholder={placeholder}
             step="0.0001"
-            value={value}
+            defaultValue={defaultValue}
             disabled={disabled}
             onChange={(e) => handleChange(e, name)}
             required={validate}
@@ -91,7 +91,11 @@ const Welcome = () => {
                             <div>
 
                                 <p className="text-white font-light text-sm" >
-                                    {currentAccount.slice(0, 10)}...{currentAccount.slice(-10)}
+                                    {
+                                        currentAccount ?
+                                            `${currentAccount.slice(0, 10)}...${currentAccount.slice(-10)}`
+                                            : '0xCoding...Abby'
+                                    }
                                 </p>
                                 <p className="text-white font-semibold text-lg mt-1" >
                                     Ethereum
@@ -101,11 +105,20 @@ const Welcome = () => {
                     </div>
 
                     <div className="p-5 sm:w-96 w-full flex flex-col justify-start items-center blue-glassmorphism">
-                        <Input placeholder="Link" type="text" name="link" handleChange={handleChange} validate={true} />
-                        <Input placeholder="Originator" type="text" name="originator" value={currentAccount} disabled={true} handleChange={handleChange} validate={true} />
-                        <Input placeholder="Source website" type="text" name="source" handleChange={handleChange} validate={false} />
-                        <Input placeholder="Keyword (Gif)" type="text" name="keyword" handleChange={handleChange} validate={true} />
-                        <Input placeholder="Description/Message" type="text" name="message" handleChange={handleChange} validate={false} />
+                        <label htmlFor="link" className="w-full text-left mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Link</label>
+                        <Input placeholder="https://codingabby.com/about" type="text" name="link" handleChange={handleChange} validate={true} />
+
+                        <label htmlFor="originator" className="w-full text-left mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Originator</label>
+                        <Input placeholder="Originator" type="text" name="originator" defaultValue={currentAccount} disabled={false} handleChange={handleChange} validate={true} />
+
+                        <label htmlFor="source" className="w-full text-left mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Source</label>
+                        <Input placeholder="https://codingabby.com" type="text" name="source" handleChange={handleChange} validate={false} />
+
+                        <label htmlFor="keyword" className="w-full text-left mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Keyword (GIF)</label>
+                        <Input placeholder="Eg. coding" type="text" name="keyword" handleChange={handleChange} validate={true} />
+
+                        <label htmlFor="link" className="w-full text-left mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Description/Message</label>
+                        <Input placeholder="Your message" type="text" name="message" handleChange={handleChange} validate={false} />
 
                         {/* Separator */}
                         <div className="h-[1px] w-full bg-gray bg-gray-400 my2" />

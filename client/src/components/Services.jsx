@@ -3,12 +3,13 @@ import { BsShieldFillCheck } from "react-icons/bs";
 import { BiSearchAlt } from "react-icons/bi";
 import { RiHeart2Fill } from "react-icons/ri";
 import { TransactionContext } from "../context/TransactionContext";
+
 const ServiceCard = ({ color, title, icon, subtitle }) => {
     return (
-        <div className="min-w-[70%] flex flex-row justify-start items-center white-glassmorphism p-3 m-2 cursor-pointer hover:shadow-xl">
-            <div className={`w-10 h-10 rounded-full flex justify-center items-center ${color}`}>
+        <div className="min-w-[80%] flex flex-row justify-start items-center white-glassmorphism p-3 m-2 cursor-pointer hover:shadow-xl">
+            {icon && <div className={`w-10 h-10 rounded-full flex justify-center items-center ${color}`}>
                 {icon}
-            </div>
+            </div>}
             <div className="flex flex-col ml-5">
                 <h1 className="mt-2 text-white text-lg">{title}</h1>
                 <h1 className="mt-2 text-white text-sm md:w-9/12">{subtitle}</h1>
@@ -41,7 +42,7 @@ const Services = () => {
                     color="bg-[#8945f8]"
                     title="Fast Transactions"
                     icon={<BiSearchAlt fontSize={21} className="text-white" />}
-                    subtitle="Security is Guaranteed. We ensure privacy and maintain the integrity of your links"
+                    subtitle="Experience very fast transactions with our service. We guarantee the fastest transactions."
                 />
                 <ServiceCard
                     color="bg-[#f84550]"

@@ -68,10 +68,10 @@ const TransactionCard = ({ link,
 }
 
 
-const Transactions = ({ isSelf }) => {
+const AllTransactions = ({ isSelf }) => {
     const { currentAccount, transactions } = useContext(TransactionContext);
     return (
-        <div className="flex w-full justify-center items-center 2xl:px-20 gradient-bg-transactions">
+        <div className="flex w-full justify-center items-center 2xl:px-20">
             <div className="flex flex-col md:p-12 py-12 px-4">
                 {currentAccount ? (
                     <h3 className="text-white text-3xl text-center my-2">
@@ -85,7 +85,7 @@ const Transactions = ({ isSelf }) => {
                     )}
 
                 <div className="flex flex-wrap justify-center items-center mt-10 ">
-                    {transactions.reverse().slice(0,5).map((transaction, index) => {
+                    {transactions.reverse().map((transaction, index) => {
                         return <TransactionCard key={index} {...transaction} />;
                     })}
                 </div>
@@ -94,4 +94,4 @@ const Transactions = ({ isSelf }) => {
     );
 }
 
-export default Transactions;
+export default AllTransactions;

@@ -12,7 +12,8 @@ contract LinkCrypt {
         string source,
         string message,
         uint256 timestamp,
-        string keyword
+        string keyword,
+        string slug
     );
 
     struct TransferStruct {
@@ -23,6 +24,7 @@ contract LinkCrypt {
         string message;
         uint256 timestamp;
         string keyword;
+        string slug;
     }
 
     TransferStruct[] transactions;
@@ -32,12 +34,13 @@ contract LinkCrypt {
         string memory originator,
         string memory source,
         string memory message,
-        string memory keyword
+        string memory keyword,
+        string memory slug
     ) public {
         transactionCounter += 1;
-        transactions.push(TransferStruct(msg.sender, link, originator, source, message, block.timestamp, keyword));
+        transactions.push(TransferStruct(msg.sender, link, originator, source, message, block.timestamp, keyword, slug));
 
-        emit Transfer(msg.sender, link, originator, source, message, block.timestamp, keyword);
+        emit Transfer(msg.sender, link, originator, source, message, block.timestamp, keyword, slug);
 
     }
 

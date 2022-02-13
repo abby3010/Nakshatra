@@ -8,10 +8,10 @@ const Footer = () => {
                     <img src={logo} alt="logo" className="w-32" />
                 </div>
                 <div className="flex flex-1 justify-evenly items-center flex-wrap sm:mt-0 mt-5 w-full">
-                    <p className="text-white text-base text-center mx-2 cursor-pointer">Market</p>
-                    <p className="text-white text-base text-center mx-2 cursor-pointer">Exchange</p>
-                    <p className="text-white text-base text-center mx-2 cursor-pointer">Tutorials</p>
-                    <p className="text-white text-base text-center mx-2 cursor-pointer">Wallets</p>
+                    <a href="/" target="_blank"><p className="text-white text-base text-center mx-2 cursor-pointer">Home</p></a>
+                    <a href="https://intublock.web.app/" target="_blank"><p className="text-white text-base text-center mx-2 cursor-pointer">All Transactions</p></a>
+                    <a href="https://intublock.web.app/" target="_blank"><p className="text-white text-base text-center mx-2 cursor-pointer">Tutorials</p></a>
+
                 </div>
             </div>
             <div className="flex justify-center items-center flex-col mt-5">
