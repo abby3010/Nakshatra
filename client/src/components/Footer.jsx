@@ -9,9 +9,9 @@ const Footer = () => {
                 </div>
                 <div className="flex flex-1 justify-evenly items-center flex-wrap sm:mt-0 mt-5 w-full">
                     <a href="/" target="_blank"><p className="text-white text-base text-center mx-2 cursor-pointer">Home</p></a>
-                    <a href="https://intublock.web.app/" target="_blank"><p className="text-white text-base text-center mx-2 cursor-pointer">All Transactions</p></a>
-                    <a href="https://intublock.web.app/" target="_blank"><p className="text-white text-base text-center mx-2 cursor-pointer">Tutorials</p></a>
-
+                    <a href="/alltransactions"><p className="text-white text-base text-center mx-2 cursor-pointer">All Transactions</p></a>
+                    <a href="https://intublock.web.app/" target="_blank"><p className="text-white text-base text-center mx-2 cursor-pointer">Blockchain Tool</p></a>
+                    <a href="https://codingabby.com/contact" target="_blank"><p className="text-white text-base text-center mx-2 cursor-pointer">Contact</p></a>
                 </div>
             </div>
             <div className="flex justify-center items-center flex-col mt-5">

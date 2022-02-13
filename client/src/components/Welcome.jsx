@@ -90,7 +90,7 @@ const Welcome = () => {
                             </div>
                             <div>
 
-                                <p className="text-white font-light text-sm" >
+                                <p className="text-white font-light text-sm">
                                     {
                                         currentAccount ?
                                             `${currentAccount.slice(0, 10)}...${currentAccount.slice(-10)}`

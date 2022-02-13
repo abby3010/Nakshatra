@@ -68,7 +68,7 @@ const TransactionCard = ({ link,
 }
 
 
-const Transactions = ({ isSelf }) => {
+const Transactions = () => {
     const { currentAccount, transactions } = useContext(TransactionContext);
     return (
         <div className="flex w-full justify-center items-center 2xl:px-20 gradient-bg-transactions">
