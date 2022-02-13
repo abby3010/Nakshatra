@@ -41,7 +41,7 @@ const Link = () => {
                     <InfoCard
                         color="bg-[#2952e3]"
                         title="Link"
-                        subtitle={transaction.link}
+                        subtitle={<a href={transaction.link} target="_blank" className="text-blue-600">{transaction.link}</a>}
                     />
                     <InfoCard
                         color="bg-[#2952e3]"
